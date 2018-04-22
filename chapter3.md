@@ -4,9 +4,15 @@ function isNaN(x) {
 	return x != x
 }
 
+变量为null时
 > function isNull(b) {
 	return typeof b === 'object' && !b
   // return b === null
+}
+
+变量为null或者undefined时
+> function isNullOrUndefined(c) {
+	return c == null;
 }
 
 > function isObject(x) {
