@@ -85,3 +85,25 @@ var a = 'global'
 }
 cheak()()  // 'local'
 ```
+#### 记忆
+```javascript
+function memorize(f) {
+	var cache = {}
+	return function() {
+		// 将实参转换为字符串，并将其用做缓存的键
+		var key = arguments.length + Array.prototype.join.call(arguments, ",")
+		if(key in cache) {
+			return cache[key]
+		} else {
+			return cache[key] = f.apply(this, arguments)
+		}
+	}
+}
+```
+#### 使用memorize()
+```javascript
+var factorial = memorize(function(n) {
+	return (n <= 1) ? 1 : n * factorial(n -1)
+})
+factorial(5) // 对于1~4的值也有缓存
+```
